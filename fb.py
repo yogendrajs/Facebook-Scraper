@@ -1,15 +1,19 @@
 from selenium import webdriver
 from getpass import getpass
 from bs4 import BeautifulSoup
-from os import path
+from hidden import *
 import time
-
 # ################################333333333####33333
 print ('Give your username and password for facebook')
-username = input('Enter your username: ')
-password = getpass('Enter your password: ')
+# username = input('Enter your username: ')
+# password = getpass('Enter your password: ')
 # ##############################33333333###########3\
-driver = webdriver.Chrome()
+# driver = webdriver.Chrome()
+
+driver = webdriver.ChromeOptions()
+prefs = {"profile.default_content_setting_values.notifications" : 2}
+driver.add_experimental_option("prefs",prefs)
+driver = webdriver.Chrome(chrome_options=driver)
 
 driver.get('https://www.facebook.com/')
 driver.find_element_by_xpath('//*[@id="email"]').send_keys(username)
@@ -27,7 +31,7 @@ friendsdata = driver.execute_script('return document.documentElement.outerHTML')
 
 data = BeautifulSoup(friendsdata, 'html.parser')
 div1 = data.find('div', attrs={'class': '_5h60', 'id': 'pagelet_timeline_main_column'})
-ul = div1.find('ul', attrs={'class': '_6_7 clearfix', 'id': True})
+ul = div1.find('ul', attrs={'class': '_6_7 clearfix'})
 # print (ul)
 li = ul.findAll('li')
 # print (li)
@@ -40,6 +44,7 @@ for i in range(len(li)):
 print (friendslink)
 
 linkdata = driver.get(friendslink)
+
 # Get scroll height
 last_height = driver.execute_script("return document.body.scrollHeight")
 while True:
@@ -47,7 +52,7 @@ while True:
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
     # Wait to load page
-    time.sleep(2.5)
+    time.sleep(3)
 
     # Calculate new scroll height and compare with last scroll height
     new_height = driver.execute_script("return document.body.scrollHeight")
@@ -57,8 +62,7 @@ while True:
 time.sleep(2)
 alldata = driver.execute_script('return document.documentElement.outerHTML')
 # print (alldata)
-driver.quit()
-
+# driver.quit()
 
 friend = BeautifulSoup(alldata, 'html.parser')
 # print (friend)
@@ -87,4 +91,3 @@ for i in ul:
         except:
             continue
 print('Total friends are: ', count)
-   
