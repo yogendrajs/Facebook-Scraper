@@ -1,14 +1,12 @@
 from selenium import webdriver
 from getpass import getpass
 from bs4 import BeautifulSoup
-from hidden import *
 import time
 # ################################333333333####33333
 print ('Give your username and password for facebook')
-# username = input('Enter your username: ')
-# password = getpass('Enter your password: ')
+username = input('Enter your username: ')
+password = getpass('Enter your password: ')
 # ##############################33333333###########3\
-# driver = webdriver.Chrome()
 
 driver = webdriver.ChromeOptions()
 prefs = {"profile.default_content_setting_values.notifications" : 2}
@@ -36,12 +34,11 @@ ul = div1.find('ul', attrs={'class': '_6_7 clearfix'})
 li = ul.findAll('li')
 # print (li)
 for i in range(len(li)):
-    # print (i)
-    # # print ()
     diva = li[i].find('a', class_ = '_6-6')
     if (diva and i == 2):
         friendslink = diva['href']
-print (friendslink)
+        break
+print ('Friends Link: ', friendslink)
 
 linkdata = driver.get(friendslink)
 
@@ -50,10 +47,8 @@ last_height = driver.execute_script("return document.body.scrollHeight")
 while True:
     # Scroll down to bottom
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-
     # Wait to load page
     time.sleep(3)
-
     # Calculate new scroll height and compare with last scroll height
     new_height = driver.execute_script("return document.body.scrollHeight")
     if new_height == last_height:
