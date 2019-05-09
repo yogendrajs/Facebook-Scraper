@@ -14,7 +14,7 @@ Selenium is a software testing framework for the web that facilitates the automa
 WebDriver is a web automation framework that allows you to execute your tests against different browsers, like Firefox, Chrome .
 You can download selenium webdriver using following commands in terminal.
 
-`wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip`
+`wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip`.
 `unzip chromedriver_linux64.zip`
 
 Now, execute the following commands to configure ChromeDriver on your system.
