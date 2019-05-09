@@ -7,7 +7,7 @@ In this project, I have scraped the names of all the friends on Facebook after l
 Beautiful Soup is a Python package for parsing HTML and XML documents. It creates a parse tree for parsed pages that can be used to extract data from HTML, which is useful for web scraping.
 If you're using Linux based OS, you can install BeautifulSoup using following command in terminal.
 
-`sudo apt-get update && sudo apt-get install python3-bs4 (Python3).`
+`sudo apt-get update && sudo apt-get install python3-bs4` (Python3).
 
 ### Selenium Webdriver
 Selenium is a software testing framework for the web that facilitates the automation of browsers.
