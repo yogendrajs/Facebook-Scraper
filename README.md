@@ -12,24 +12,13 @@ If you're using Linux based OS, you can install BeautifulSoup using following co
 ### Selenium Webdriver
 Selenium is a software testing framework for the web that facilitates the automation of browsers.
 WebDriver is a web automation framework that allows you to execute your tests against different browsers, like Firefox, Chrome .
-You can download selenium webdriver using following commands in terminal.
+You can download selenium webdriver for **Google Chrome** using following command in terminal.
+Here, pip is a package-management system used to install and manage software packages written in Python.
 
 ```
-wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip.
-unzip chromedriver_linux64.zip
+sudo apt-get install python3-pip
+pip3 install selenium
 ```
-
-Now, execute the following commands to configure ChromeDriver on your system.
-
-```
-sudo mv chromedriver /usr/bin/chromedriver
-sudo chown root:root /usr/bin/chromedriver
-sudo chmod +x /usr/bin/chromedriver
-```
-
-The Selenium Server is required to run Remote Selenium WebDrivers. You need to download the Selenium standalone server jar file using the below commands or visit here to find the latest version of Jar file.
-
-`wget https://selenium-release.storage.googleapis.com/3.13/selenium-server-standalone-3.13.0.jar`.
 
 ## Instructions to run the Code
 
