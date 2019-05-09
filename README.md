@@ -15,17 +15,20 @@ WebDriver is a web automation framework that allows you to execute your tests ag
 You can download selenium webdriver using following commands in terminal.
 
 `wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip`.
-`unzip chromedriver_linux64.zip`
+
+`unzip chromedriver_linux64.zip`.
 
 Now, execute the following commands to configure ChromeDriver on your system.
 
-`sudo mv chromedriver /usr/bin/chromedriver`
-`sudo chown root:root /usr/bin/chromedriver`
-`sudo chmod +x /usr/bin/chromedriver`
+`sudo mv chromedriver /usr/bin/chromedriver`.
+
+`sudo chown root:root /usr/bin/chromedriver`.
+
+`sudo chmod +x /usr/bin/chromedriver`.
 
 The Selenium Server is required to run Remote Selenium WebDrivers. You need to download the Selenium standalone server jar file using the below commands or visit here to find the latest version of Jar file.
 
-`wget https://selenium-release.storage.googleapis.com/3.13/selenium-server-standalone-3.13.0.jar`
+`wget https://selenium-release.storage.googleapis.com/3.13/selenium-server-standalone-3.13.0.jar`.
 
 ## Instructions to run the Code
 
