@@ -18,17 +18,18 @@ driver.find_element_by_xpath('//*[@id="email"]').send_keys(username) # sending f
 driver.find_element_by_xpath('//*[@id="pass"]').send_keys(password) # sending facebook id password
 driver.find_element_by_xpath("//input[@type='submit']").click() # clicking on the login button
 
-time.sleep(7) # waiting for 7 seconds so that we can load the HOME page for the data that we want
+time.sleep(5) # waiting for 5 seconds so that we can load the HOME page for the data that we want
 print (driver.title) # It gives the required title of the page
 
 #####################################
 # from here onwards, I'm finding elements 
 driver.find_element_by_class_name('_1vp5').click()
-name = driver.find_element_by_class_name('_1vp5').text
-print (name)
-time.sleep(2)
+time.sleep(3)
 ###########################################existence
 driver.find_element_by_xpath('//a[@data-tab-key="friends"]').click() # to click on Friends button
+time.sleep(2)
+name = driver.find_element_by_xpath('//*[@id="fb-timeline-cover-name"]/a').text
+print ("Your Full name is: ", name.split('\n')[0])
 
 # starting scrolling the whole page till it loads all the friends and reach the end of the page
 # Get scroll height
@@ -45,7 +46,7 @@ while True:
     last_height = new_height
 time.sleep(2)
 alldata = driver.execute_script('return document.documentElement.outerHTML')
-# print (alldata)
+
 # driver.quit()
 
 # from here, I am starting the parsing of the friends data, so that we could get all the friends name and their count
@@ -59,7 +60,7 @@ time.sleep(2.5)
 ul = div8.findAll('ul')
 # print (div9)
 count = 0
-print ('Your Friends-List is: \n')
+print ('\nYour Friends-List is: ')
 for i in ul:
     # print (i)
     j = i.findAll('li')
