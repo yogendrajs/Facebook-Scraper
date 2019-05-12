@@ -16,7 +16,7 @@ driver = webdriver.Chrome(chrome_options=driver)
 driver.get('https://www.facebook.com/') # requesting to this link
 driver.find_element_by_xpath('//*[@id="email"]').send_keys(username) # sending facebook id username
 driver.find_element_by_xpath('//*[@id="pass"]').send_keys(password) # sending facebook id password
-driver.find_element_by_xpath("//input[@type='submit']").click() # clicking on the submit button
+driver.find_element_by_xpath("//input[@type='submit']").click() # clicking on the login button
 
 time.sleep(7) # waiting for 7 seconds so that we can load the HOME page for the data that we want
 print (driver.title) # It gives the required title of the page
@@ -24,30 +24,11 @@ print (driver.title) # It gives the required title of the page
 #####################################
 # from here onwards, I'm finding elements 
 driver.find_element_by_class_name('_1vp5').click()
+name = driver.find_element_by_class_name('_1vp5').text
+print (name)
 time.sleep(2)
-friendsdata = driver.execute_script('return document.documentElement.outerHTML')
 ###########################################existence
-
-# started parsing for FRIENDS's link so that we can request on that link to get the html of friends data 
-data = BeautifulSoup(friendsdata, 'html.parser')
-div1 = data.find('div', attrs={'class': '_5h60', 'id': 'pagelet_timeline_main_column'})
-div2 = div1.find('div', attrs={'class': '_5h60', 'id': 'timeline_top_section'})
-div3 = div2.find('div', attrs={'class': 'fbTimelineSection fbTimelineTopSection', 'id': None})
-div4 = div3.find('div', attrs={'class': 'drop_elem', 'id': 'fbProfileCover'})
-div5 = div4.find('div', attrs={'class': 'clearfix', 'id': 'fbTimelineHeadline'})
-div6 = div5.find('div', attrs={'class': '_70k', 'id': None})
-ul = div1.find('ul', attrs={'class': '_6_7 clearfix', 'id': True})
-# print (ul)
-li = ul.findAll('li')
-# print (li)
-for i in range(len(li)):
-    diva = li[i].find('a', class_ = '_6-6')
-    if (diva and i == 2):
-        friendslink = diva['href']
-        break
-print ('Friends Link: ', friendslink) # required link of friends section
-
-linkdata = driver.get(friendslink) # requesting to the friends link
+driver.find_element_by_xpath('//a[@data-tab-key="friends"]').click() # to click on Friends button
 
 # starting scrolling the whole page till it loads all the friends and reach the end of the page
 # Get scroll height
@@ -73,10 +54,9 @@ friend = BeautifulSoup(alldata, 'html.parser')
 div7 = friend.find('div', attrs={'class': '_5h60 _30f', 'id': 'pagelet_timeline_medley_friends'})
 # print (div7)
 div8 = div7.find('div', attrs={'class': '_3i9', 'id': 'collection_wrapper_2356318349'})
-# print (div8)
-div9 = div8.find('div', attrs={'class': '_5h60 _30f'})
-# print (div9)
-ul = div9.findAll('ul', class_ = True)
+
+time.sleep(2.5)
+ul = div8.findAll('ul')
 # print (div9)
 count = 0
 print ('Your Friends-List is: \n')
