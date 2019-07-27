@@ -1,7 +1,8 @@
 from selenium import webdriver
 from getpass import getpass # to hide password while entering
 from bs4 import BeautifulSoup
-import time
+from os import path
+import time, os, json, pprint
 #########################33
 print ('Give your username and password for facebook')
 username = input('Enter your username: ')
@@ -30,6 +31,7 @@ driver.find_element_by_xpath('//a[@data-tab-key="friends"]').click() # to click 
 time.sleep(2)
 name = driver.find_element_by_xpath('//*[@id="fb-timeline-cover-name"]/a').text
 print ("Your Full name is: ", name.split('\n')[0])
+name = name.split('\n')[0]
 
 # starting scrolling the whole page till it loads all the friends and reach the end of the page
 # Get scroll height
@@ -60,6 +62,10 @@ time.sleep(2.5)
 ul = div8.findAll('ul')
 # print (div9)
 count = 0
+exists = path.exists(os.getcwd() + '/fb.json') # to get into the present directory where this json file locates
+
+dic = {}
+friendlist = []
 print ('\nYour Friends-List is: ')
 for i in ul:
     # print (i)
@@ -72,8 +78,32 @@ for i in ul:
             cd = ab.find("div", class_="uiProfileBlockContent")
             ef = cd.find('div', class_ = 'fsl fwb fcb')
             gh = ef.find('a')
-            print(gh.text) # It will print all the names of the friends after scrolling and loading the whole page 
+            friendName = gh.text # It will print all the names of the friends after scrolling and loading the whole page 
+            friendlist.append(friendName)
             count+=1
         except:
             continue
+
+dic['name'] = name # name of the owner of the facebook id
+dic['friends'] = friendlist # friendslist of the owner person in a list
+dic['total'] = count # total number of friends
+pprint.pprint(dic)
+# caching of the data in the local json file
+if not exists:
+    with open (os.getcwd() + '/fb.json', 'w') as file:
+        # if (os.path.getsize(os.getcwd() + '/fb.json') == 0):
+        file.write(json.dumps([]))
+        file.close()
+with open(os.getcwd() + '/fb.json', 'r+') as content:
+    data = json.loads(content.read())
+    for i in data:
+        if i['name'] == name:
+            i['friends'] = friendlist
+            break
+    else:
+        data.append(dic)
+    content.close()
+with open(os.getcwd() + '/fb.json', 'w') as files:
+    files.write(json.dumps(data, indent=4, sort_keys=False))
+
 print('Total friends are: ', count) # It will tell you how many friends do you have. May differ with those that have been shown there. But it counts the original total one.
