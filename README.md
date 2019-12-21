@@ -12,13 +12,12 @@ If you're using Linux based OS, you can install BeautifulSoup using following co
 ### Selenium Webdriver
 Selenium is a software testing framework for the web that facilitates the automation of browsers.
 WebDriver is a web automation framework that allows you to execute your tests against different browsers, like Firefox, Chrome .
-You can download selenium webdriver for **Google Chrome** using following command in terminal.
-Here, pip is a package-management system used to install and manage software packages written in Python.
+You can download selenium webdriver using following command in terminal. It will install chromium-chromedriver in your system.
 
 ```
-sudo apt-get install python3-pip
-pip3 install selenium
+sudo apt-get install chromium-chromedriver
 ```
+Or, you can also download appropriate Chrome-Drive for your system. Follow [this link](https://sites.google.com/a/chromium.org/chromedriver/downloads) to know more! If still not working, click [here](https://askubuntu.com/questions/1004947/how-do-i-use-the-chrome-driver-in-ubuntu-16-04) to get the solution from Ask-Ubuntu.
 
 ## Instructions to run the Code
 
