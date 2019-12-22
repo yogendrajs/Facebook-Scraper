@@ -21,6 +21,6 @@ Or, you can also download appropriate Chrome-Drive for your system. Follow [this
 
 ## Instructions to run the Code
 
-Any version of Python3 should be installed on your Linux-based computer. Navigate to your directory where your `fb.py` file is located. You can run the code using the following command on your terminal.
+Any version of Python3 should be installed on your Linux-based computer. Navigate to your directory where your `fb.py` file is located. You can run the code using the following command on your terminal. It will save a JSON file (<your_name.json>) in the current directory, where all your friends' will be located.
 
 `python3 fb.py`
