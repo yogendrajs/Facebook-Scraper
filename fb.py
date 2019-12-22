@@ -62,7 +62,7 @@ time.sleep(2.5)
 ul = div8.findAll('ul')
 # print (div9)
 count = 0
-exists = path.exists(os.getcwd() + '/fb.json') # to get into the present directory where this json file locates
+exists = path.exists(os.getcwd() + '/' + name + '.json') # to get into the present directory where this json file locates
 
 dic = {}
 friendlist = []
@@ -90,11 +90,11 @@ dic['total'] = count # total number of friends
 pprint.pprint(dic)
 # caching of the data in the local json file
 if not exists:
-    with open (os.getcwd() + '/fb.json', 'w') as file:
-        # if (os.path.getsize(os.getcwd() + '/fb.json') == 0):
+    with open (os.getcwd() + '/' + name +'.json', 'w') as file:
+        # if (os.path.getsize(os.getcwd() + '/' + name +'.json') == 0):
         file.write(json.dumps([]))
         file.close()
-with open(os.getcwd() + '/fb.json', 'r+') as content:
+with open(os.getcwd() + '/' + name +'.json', 'r+') as content:
     data = json.loads(content.read())
     for i in data:
         if i['name'] == name:
@@ -103,7 +103,7 @@ with open(os.getcwd() + '/fb.json', 'r+') as content:
     else:
         data.append(dic)
     content.close()
-with open(os.getcwd() + '/fb.json', 'w') as files:
+with open(os.getcwd() + '/' + name +'.json', 'w') as files:
     files.write(json.dumps(data, indent=4, sort_keys=False))
 
 print('Total friends are: ', count) # It will tell you how many friends do you have. May differ with those that have been shown there. But it counts the original total one.
